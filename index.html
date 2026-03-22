@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Manya C R - Developer Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0a0a;
+  --card:#141414;
+  --border:#252525;
+  --text:#fff;
+  --muted:#9ca3af;
+  --purple:#8b5cf6;
+  --purple2:#8b5cf6;
+  --glow:rgba(139,92,246,0.15);
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;overflow-x:hidden}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:9999;
+  display:flex !important;align-items:center;justify-content:space-between;
+  padding:0 52px;height:66px;
+  background:rgba(10,10,10,0.95);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(255,255,255,0.07);
+}
+.logo{font-size:20px;font-weight:900;color:#fff;text-decoration:none}
+.logo .dot{color:var(--purple)}
+.nav-links{
+  display:flex !important;
+  align-items:center;gap:38px;list-style:none;
+  visibility:visible !important;opacity:1 !important;
+}
+.nav-links a{
+  color:#9ca3af;text-decoration:none;
+  font-size:15px;font-weight:500;
+  transition:color .2s;
+  visibility:visible !important;
+}
+.nav-links a:hover{color:#fff}
+.hire-btn{
+  background:transparent;color:#8b5cf6;border:2px solid #8b5cf6;
+  padding:10px 24px;border-radius:10px;
+  font-size:14px;font-weight:600;cursor:pointer;
+  text-decoration:none;display:inline-block;
+  transition:background .2s,color .2s,transform .15s;
+}
+.hire-btn:hover{background:#8b5cf6;color:#fff;transform:translateY(-1px)}
+
+/* ── HERO ── */
+#hero{
+  min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;padding:80px 24px 60px;
+}
+.mascot-wrap{
+  width:150px;height:185px;margin-bottom:40px;
+  animation:float 3.5s ease-in-out infinite;
+  filter:drop-shadow(0 12px 40px rgba(109,40,217,0.55));
+  position:relative;
+}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-13px)}}
+
+.hero-name{font-size:clamp(58px,9vw,105px);font-weight:900;line-height:1;letter-spacing:-3px;margin-bottom:18px}
+.hero-name .purple{color:#8b5cf6}
+.hero-dots{font-size:18px;font-weight:700;letter-spacing:5px;color:#4b5563;margin-bottom:54px}
+.hero-dots span{margin:0 8px;color:#374151}
+.hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.btn-fill{background:transparent;color:#8b5cf6;border:2px solid #8b5cf6;padding:13px 28px;border-radius:50px;font-size:15px;font-weight:600;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:background .2s,color .2s,transform .2s}
+.btn-fill:hover{background:#8b5cf6;color:#fff;transform:translateY(-2px)}
+.btn-outline{background:transparent;color:#fff;border:1.5px solid #2d2d2d;padding:13px 28px;border-radius:50px;font-size:15px;font-weight:600;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:border-color .2s,transform .2s}
+.btn-outline:hover{border-color:var(--purple);transform:translateY(-2px)}
+
+/* ── SECTIONS ── */
+.section{padding:96px 52px;max-width:1160px;margin:0 auto}
+.label{font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase;margin-bottom:14px;color:var(--purple);display:block}
+.label-orange{color:#f97316}
+.big-title{font-size:clamp(28px,3.5vw,38px);font-weight:800;line-height:1.05;margin-bottom:10px;letter-spacing:4px;color:var(--purple);text-transform:uppercase;font-family:'Georgia', serif;}
+.sub-text{color:var(--muted);font-size:17px;line-height:1.75;max-width:660px}
+
+/* ── ABOUT ── */
+#about{text-align:center}
+.three-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:0}
+.about-card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:32px 28px;text-align:left;transition:border-color .25s,transform .25s}
+.about-card:hover{border-color:var(--purple);transform:translateY(-5px)}
+.icon-box{width:50px;height:50px;border-radius:13px;background:var(--glow);display:flex;align-items:center;justify-content:center;margin-bottom:20px;border:1px solid rgba(139,92,246,0.25)}
+.icon-box svg{width:26px;height:26px;stroke:var(--purple);stroke-width:1.8;fill:none}
+.card-title{font-size:17px;font-weight:700;margin-bottom:9px}
+.card-body{color:var(--muted);font-size:13.5px;line-height:1.65}
+
+/* ── SKILLS ── */
+#skills{text-align:left}
+.skill-section{margin-bottom:36px;text-align:left}
+.skill-section-title{font-size:16px;font-weight:700;color:#ffffff;margin-bottom:14px;text-transform:uppercase;letter-spacing:2px;display:flex;align-items:center;gap:10px}
+.skill-section-title::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--purple);flex-shrink:0;display:inline-block}
+.chips{display:flex;flex-wrap:wrap;gap:16px}
+.chip{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:22px 26px;display:flex;flex-direction:column;align-items:center;gap:12px;min-width:110px;transition:border-color .2s,transform .2s;cursor:default}
+.chip:hover{border-color:var(--purple);transform:translateY(-4px)}
+.chip-label{font-size:13.5px;font-weight:600;color:var(--muted)}
+.chip svg{width:36px;height:36px;stroke-width:1.3 !important}
+/* custom icon for skills without devicon */
+.chip-img{width:30px;height:30px;object-fit:contain}
+
+/* ── PROJECTS ── */
+#projects{text-align:center}
+.proj-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:40px;margin-top:36px;text-align:left;transition:border-color .25s}
+.proj-card:hover{border-color:var(--purple)}
+.proj-badge{display:inline-flex;align-items:center;gap:7px;color:var(--purple);font-size:13.5px;font-weight:600;margin-bottom:14px}
+.proj-title{font-size:24px;font-weight:800;margin-bottom:6px}
+.proj-role{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:13.5px;margin:14px 0 18px}
+.proj-desc{color:var(--muted);font-size:14.5px;line-height:1.75;margin-bottom:24px}
+.feat-list{list-style:none;display:flex;flex-direction:column;gap:11px}
+.feat-list li{display:flex;align-items:flex-start;gap:10px;font-size:14.5px;color:#e5e7eb}
+.feat-star{color:var(--purple);font-size:12px;margin-top:3px;flex-shrink:0}
+
+/* ── CONTACT ── */
+#contact{text-align:center}
+.contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:48px 0 40px}
+.contact-card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:30px 24px;display:flex;flex-direction:column;align-items:center;gap:12px;text-decoration:none;color:var(--text);transition:border-color .25s,transform .25s}
+.contact-card:hover{border-color:var(--purple);transform:translateY(-5px)}
+.c-icon{width:52px;height:52px;border-radius:14px;background:var(--glow);border:1px solid rgba(139,92,246,0.2);display:flex;align-items:center;justify-content:center}
+.c-icon svg{width:24px;height:24px;stroke:var(--purple);stroke-width:1.8;fill:none}
+.c-label{font-size:13px;color:var(--muted);font-weight:500}
+.c-val{font-size:14px;font-weight:700;text-align:center}
+
+/* ── FOOTER ── */
+footer{border-top:1px solid var(--border);padding:28px 52px;text-align:center;color:#444;font-size:13px}
+
+/* ── FIXED MASCOT ── */
+#mascot-fixed{position:fixed;bottom:28px;right:28px;z-index:9999;cursor:pointer;-webkit-tap-highlight-color:transparent;width:76px;height:94px}
+#mascot-fixed svg{width:100%;height:100%;animation:bob 2.4s ease-in-out infinite;filter:drop-shadow(0 6px 20px rgba(109,40,217,0.5))}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(0deg)}35%{transform:translateY(-7px) rotate(-3deg)}70%{transform:translateY(-3px) rotate(3deg)}}
+#mascot-fixed.bounce svg{animation:bigbounce .5s ease-in-out}
+@keyframes bigbounce{0%,100%{transform:scale(1)}30%{transform:scale(1.2) rotate(-8deg)}60%{transform:scale(.95) rotate(5deg)}}
+.bubble{position:absolute;bottom:calc(100% + 10px);right:0;background:#fff;color:#111;padding:9px 15px;border-radius:14px 14px 2px 14px;font-size:13.5px;font-weight:600;white-space:nowrap;box-shadow:0 6px 24px rgba(0,0,0,0.25);opacity:0;transform:translateY(8px) scale(.9);transition:all .22s cubic-bezier(.34,1.56,.64,1);pointer-events:none}
+.bubble.on{opacity:1;transform:translateY(0) scale(1)}
+
+/* ── END ── */
+.cc-map{
+  display:flex;flex-direction:column;
+  align-items:center;
+  padding:10px 0 40px;
+  position:relative;
+  width:100%;
+}
+
+/* zone section label */
+.cc-zone-label{
+  font-size:11px;font-weight:700;letter-spacing:3px;
+  text-transform:uppercase;color:var(--muted);
+  margin:28px 0 18px;
+  background:var(--card);border:1px solid var(--border);
+  padding:6px 20px;border-radius:20px;
+}
+
+/* each row */
+.cc-row{
+  display:flex;align-items:center;
+  width:100%;max-width:820px;
+  padding:0 16px;
+  gap:0;
+}
+.cc-row-right{justify-content:flex-start}
+.cc-row-left{justify-content:flex-end}
+
+/* dashed path line between nodes */
+.cc-path{
+  flex:1;height:4px;min-width:16px;
+  border-top:3px dashed #2d2d2d;
+}
+
+/* turn connector between rows */
+.cc-turn{
+  width:100%;max-width:820px;
+  height:44px;
+  position:relative;
+}
+.cc-turn-right{
+  border-right:3px dashed #2d2d2d;
+  border-bottom-right-radius:28px;
+  align-self:flex-end;
+  margin-right:58px; /* aligns with right edge of last node */
+}
+.cc-turn-left{
+  border-left:3px dashed #2d2d2d;
+  border-bottom-left-radius:28px;
+  align-self:flex-start;
+  margin-left:58px;
+}
+
+/* RECTANGULAR NODE — the main change */
+.cc-node{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:8px;
+  width:110px;height:80px;
+  border-radius:14px;
+  border:2px solid var(--border);
+  background:var(--card);
+  cursor:pointer;
+  font-size:11px;font-weight:800;letter-spacing:1.5px;
+  color:#fff;
+  transition:transform .18s,border-color .18s,box-shadow .18s;
+  flex-shrink:0;
+  user-select:none;
+  position:relative;
+}
+.cc-node i{font-size:28px;line-height:1}
+.cc-node svg{width:28px;height:28px}
+.cc-node span{font-size:10.5px;font-weight:800;letter-spacing:1.5px;color:#fff;text-align:center;line-height:1.2}
+.cc-node:hover{transform:scale(1.1) translateY(-3px);border-color:var(--purple);box-shadow:0 0 22px rgba(139,92,246,0.4)}
+.cc-node:active{transform:scale(0.9)}
+
+/* pop on click */
+.cc-node.popped{animation:ccpop .4s cubic-bezier(.36,.07,.19,.97)}
+@keyframes ccpop{
+  0%{transform:scale(1)}
+  25%{transform:scale(1.28) rotate(-5deg)}
+  50%{transform:scale(0.87) rotate(4deg)}
+  75%{transform:scale(1.08) rotate(-2deg)}
+  100%{transform:scale(1)}
+}
+
+/* per-skill accent colours */
+.cc-python{border-color:#3b82f6;background:linear-gradient(135deg,#0d1b2e,#111)}
+.cc-cpp   {border-color:#6366f1;background:linear-gradient(135deg,#0e0e2e,#111)}
+.cc-java  {border-color:#f97316;background:linear-gradient(135deg,#1e0d00,#111)}
+.cc-html  {border-color:#f97316;background:linear-gradient(135deg,#1e0d00,#111)}
+.cc-css   {border-color:#3b82f6;background:linear-gradient(135deg,#0d1b2e,#111)}
+.cc-dsa   {border-color:#8b5cf6;background:linear-gradient(135deg,#150d2e,#111)}
+.cc-oop   {border-color:#a78bfa;background:linear-gradient(135deg,#150d2e,#111)}
+.cc-os    {border-color:#7c3aed;background:linear-gradient(135deg,#150d2e,#111)}
+.cc-ml    {border-color:#c084fc;background:linear-gradient(135deg,#1a0d2e,#111)}
+.cc-git   {border-color:#f97316;background:linear-gradient(135deg,#1e0d00,#111)}
+.cc-github{border-color:#9ca3af;background:linear-gradient(135deg,#111,#1a1a1a)}
+.cc-vscode{border-color:#2563eb;background:linear-gradient(135deg,#0a1628,#111)}
+.cc-vercel{border-color:#e5e7eb;background:linear-gradient(135deg,#111,#1a1a1a)}
+.cc-azure {border-color:#38bdf8;background:linear-gradient(135deg,#001e2e,#111)}
+
+/* finish badge */
+.cc-finish{
+  margin-top:36px;
+  font-size:16px;font-weight:900;letter-spacing:3px;
+  color:#fbbf24;
+  background:linear-gradient(135deg,#451a03,#1c1009);
+  border:2px solid #f59e0b;
+  padding:14px 38px;border-radius:50px;
+  box-shadow:0 0 24px rgba(251,191,36,0.25);
+  animation:shine 2s ease-in-out infinite;
+}
+@keyframes shine{
+  0%,100%{box-shadow:0 0 24px rgba(251,191,36,0.25)}
+  50%{box-shadow:0 0 44px rgba(251,191,36,0.5)}
+}
+
+@media(max-width:700px){
+  .cc-node{width:80px;height:64px;font-size:9px}
+  .cc-node i,.cc-node svg{font-size:22px;width:22px;height:22px}
+  .cc-turn-right{margin-right:42px}
+  .cc-turn-left{margin-left:42px}
+}
+
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <a href="#hero" class="logo">M<span class="dot">.</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="YOUR_RESUME_LINK_HERE" target="_blank" style="color:var(--purple);font-weight:600">Resume ↓</a></li>
+  </ul>
+  <a href="#contact" class="hire-btn">Hire Me</a>
+</nav>
+
+<!-- ── HERO ── -->
+<div id="hero">
+  <!-- Emoji: exact match — big round purple head + dark purple cylindrical base, rosy cheeks, dot eyes, smile -->
+  <svg class="mascot-wrap" viewBox="0 0 150 185" xmlns="http://www.w3.org/2000/svg">
+    <!-- base shadow -->
+    <ellipse cx="75" cy="182" rx="34" ry="8" fill="#3b1f7a" opacity="0.4"/>
+    <!-- base cylinder body -->
+    <rect x="38" y="148" width="74" height="24" fill="#6d3fc9"/>
+    <!-- base top ellipse (lighter) -->
+    <ellipse cx="75" cy="148" rx="37" ry="11" fill="#7c4fe0"/>
+    <!-- base bottom ellipse (darker) -->
+    <ellipse cx="75" cy="172" rx="37" ry="11" fill="#5a32b0"/>
+    <!-- head -->
+    <circle cx="75" cy="78" r="66" fill="#8b5cf6"/>
+    <!-- head highlight -->
+    <ellipse cx="57" cy="50" rx="20" ry="12" fill="#a78bfa" opacity="0.25" transform="rotate(-25 57 50)"/>
+    <!-- left eye -->
+    <circle cx="57" cy="74" r="9.5" fill="#1a0533"/>
+    <!-- right eye -->
+    <circle cx="93" cy="74" r="9.5" fill="#1a0533"/>
+    <!-- left eye shine -->
+    <circle cx="60" cy="71" r="3.2" fill="#fff" opacity="0.75"/>
+    <!-- right eye shine -->
+    <circle cx="96" cy="71" r="3.2" fill="#fff" opacity="0.75"/>
+    <!-- left cheek -->
+    <ellipse cx="40" cy="91" rx="13" ry="8.5" fill="#e879f9" opacity="0.6"/>
+    <!-- right cheek -->
+    <ellipse cx="110" cy="91" rx="13" ry="8.5" fill="#e879f9" opacity="0.6"/>
+    <!-- smile -->
+    <path d="M59 101 Q75 118 91 101" stroke="#1a0533" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+  </svg>
+
+  <h1 class="hero-name">Manya <span class="purple">C R</span></h1>
+  <p class="hero-dots">CODE <span>·</span> LEARN <span>·</span> IMPROVE</p>
+  <div class="hero-btns">
+    <a href="#skills" class="btn-fill">
+      View Skills
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    </a>
+    <a href="#contact" class="btn-outline">
+      Contact Me
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+    </a>
+  </div>
+</div>
+
+<!-- ── ABOUT ── -->
+<section class="section" id="about">
+  <h2 class="big-title" style="text-align:center">About Me</h2>
+  <p class="sub-title-muted" style="text-align:center;font-size:26px;font-weight:700;color:#ffffff;margin-bottom:22px;letter-spacing:-0.5px">Driven by Curiosity</p>
+  <p class="sub-text" style="margin:0 auto 56px;text-align:center">
+    I'm an Information Science student with a deep passion for understanding how things work under the hood. My journey revolves around mastering core CS fundamentals and continuously improving my problem-solving abilities.
+  </p>
+  <div class="three-grid">
+    <div class="about-card">
+      <div class="icon-box">
+        <svg viewBox="0 0 24 24"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 1 1 7.072 0l-.548.547A3.374 3.374 0 0 0 14 18.469V19a2 2 0 1 1-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+      </div>
+      <p class="card-title">Problem Solver</p>
+      <p class="card-body">Passionate about breaking down complex problems into elegant, efficient solutions</p>
+    </div>
+    <div class="about-card">
+      <div class="icon-box">
+        <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+      </div>
+      <p class="card-title">DSA Enthusiast</p>
+      <p class="card-body">Regular practice on HackerRank and Codeforces to sharpen algorithmic thinking</p>
+    </div>
+    <div class="about-card">
+      <div class="icon-box">
+        <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      </div>
+      <p class="card-title">Optimization Focus</p>
+      <p class="card-body">Committed to writing clean, optimized code with optimal time and space complexity</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── SKILLS ── -->
+<section class="section" id="skills">
+  <h2 class="big-title" style="text-align:center">Skills</h2>
+  <p class="sub-title-muted" style="text-align:center;font-size:26px;font-weight:700;color:#ffffff;margin-bottom:8px;letter-spacing:-0.5px">My Toolkit</p>
+  <p class="sub-text" style="margin:0 auto 52px;text-align:center">Technologies and tools I work with</p>
+
+  <div class="skill-section">
+    <p class="skill-section-title">Programming Languages</p>
+    <div class="chips">
+      <div class="chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 17v-5l4 3 4-3v5"/><path d="M8 7h8"/></svg>
+        <span class="chip-label">Python</span>
+      </div>
+      <div class="chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="1.7"><path d="M4 17V7l8-4 8 4v10l-8 4-8-4z"/><path d="M12 3v18"/><path d="M4 7l8 4 8-4"/></svg>
+        <span class="chip-label">C++</span>
+      </div>
+      <div class="chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 8h8M8 12h5M8 16h3"/></svg>
+        <span class="chip-label">Java</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="skill-section">
+    <p class="skill-section-title">Web Technologies</p>
+    <div class="chips">
+      <div class="chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="1.7"><path d="M4 3l1.5 16.5L12 21l6.5-1.5L20 3H4z"/><path d="M8 7h8M8.5 12h7l-.5 5-3 1-3-1-.2-2"/></svg>
+        <span class="chip-label">HTML5</span>
+      </div>
+      <div class="chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="1.7"><path d="M4 3l1.5 16.5L12 21l6.5-1.5L20 3H4z"/><path d="M8 8h8M9 12h6.5l-.4 4-3.1.8-3.1-.8-.2-1.5"/></svg>
+        <span class="chip-label">CSS3</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="skill-section">
+    <p class="skill-section-title">Core Concepts</p>
+    <div class="chips">
+      <div class="chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="1.7"><path d="M4 6h16M4 10h16M4 14h10M4 18h6"/><circle cx="19" cy="16" r="3"/></svg>
+        <span class="chip-label">DSA</span>
+      </div>
+      <div class="chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="1.7"><rect x="2" y="3" width="8" height="8" rx="2"/><rect x="14" y="3" width="8" height="8" rx="2"/><rect x="8" y="14" width="8" height="8" rx="2"/><path d="M6 11v3h12v-3M12 14v-3"/></svg>
+        <span class="chip-label">OOP</span>
+      </div>
+      <div class="chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="1.7"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4M6 7h4M6 10h8M6 13h3"/></svg>
+        <span class="chip-label">OS</span>
+      </div>
+      <div class="chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="1.7"><circle cx="12" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/><path d="M12 7v4M12 11l-5 6M12 11l5 6M7 17h10"/></svg>
+        <span class="chip-label">ML</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="skill-section">
+    <p class="skill-section-title">Tools &amp; Cloud</p>
+    <div class="chips">
+      <div class="chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="1.7"><circle cx="12" cy="12" r="4"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+        <span class="chip-label">Git</span>
+      </div>
+      <div class="chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="1.7"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0 1 12 6.8c.85.004 1.7.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10.01 10.01 0 0 0 22 12c0-5.52-4.48-10-10-10z"/></svg>
+        <span class="chip-label">GitHub</span>
+      </div>
+      <div class="chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>
+        <span class="chip-label">VS Code</span>
+      </div>
+      <div class="chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="1.7"><path d="M12 2L2 19h20L12 2z"/></svg>
+        <span class="chip-label">Vercel</span>
+      </div>
+      <div class="chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="1.7"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
+        <span class="chip-label">Azure AI</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROJECTS ── -->
+<section class="section" id="projects">
+  <h2 class="big-title" style="text-align:center">Projects</h2>
+  <p class="sub-title-muted" style="text-align:center;font-size:26px;font-weight:700;color:#ffffff;margin-bottom:0;letter-spacing:-0.5px">My Work</p>
+  <div class="proj-card">
+    <div class="proj-badge">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+      Smart India Hackathon – 2025
+    </div>
+    <h3 class="proj-title">Gamified Learning Platform for Rural Education</h3>
+    <div class="proj-role">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+      Role: <strong style="color:#fff;margin-left:4px">Team Leader – Smart India Hackathon 2025</strong>
+    </div>
+    <p class="proj-desc">
+      Developed a gamified multilingual learning platform aimed at improving education accessibility for rural students. The platform supports Odia voice-based learning, AI assistance, and localized content to enable inclusive and engaging education.
+    </p>
+    <ul class="feat-list">
+      <li><span class="feat-star">✦</span>Gamified learning with avatars, rewards, pets, outfits, and leaderboards</li>
+      <li><span class="feat-star">✦</span>Odia voice input and audio output for non-English learners</li>
+      <li><span class="feat-star">✦</span>Localized content based on Odisha cities and culture</li>
+      <li><span class="feat-star">✦</span>AI chatbot and image-based learning (Google Lens–like scanner)</li>
+      <li><span class="feat-star">✦</span>Teacher dashboard to track progress and identify students needing attention</li>
+      <li><span class="feat-star">✦</span>Assignments, overdue tracking, virtual labs, and mini-games</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section class="section" id="contact">
+  <span class="label label-orange" style="text-align:center">Get In Touch</span>
+  <h2 class="big-title" style="text-align:center">Let's Connect</h2>
+  <p class="sub-text" style="margin:0 auto;text-align:center">
+    I'm always open to discussing new opportunities, interesting problems, or just having a chat about technology and algorithms.
+  </p>
+  <div class="contact-grid">
+    <a href="mailto:manyacr1005@gmail.com" class="contact-card">
+      <div class="c-icon">
+        <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+      </div>
+      <span class="c-label">Email</span>
+      <span class="c-val">manyacr1005@gmail.com</span>
+    </a>
+    <a href="https://github.com/Manya2006dot" target="_blank" class="contact-card">
+      <div class="c-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="1.7"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0 1 12 6.8c.85.004 1.7.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10.01 10.01 0 0 0 22 12c0-5.52-4.48-10-10-10z"/></svg>
+      </div>
+      <span class="c-label">GitHub</span>
+      <span class="c-val">Manya2006dot</span>
+    </a>
+    <a href="https://www.linkedin.com/in/manya-c-r" target="_blank" class="contact-card">
+      <div class="c-icon">
+        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M7 10v8M7 7v.01M11 18v-5c0-1.1.9-2 2-2s2 .9 2 2v5M11 10v8" stroke-linecap="round"/></svg>
+      </div>
+      <span class="c-label">LinkedIn</span>
+      <span class="c-val">Manya C R</span>
+    </a>
+  </div>
+  <div style="text-align:center">
+    <a href="mailto:manyacr1005@gmail.com" class="btn-fill" style="display:inline-flex">
+      Say Hello
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+    </a>
+  </div>
+</section>
+
+<footer>© 2025 Manya C R · All rights reserved</footer>
+
+<!-- ── FIXED MASCOT ── -->
+<div id="mascot-fixed" onclick="clickMascot()">
+  <div class="bubble" id="bub">👋 Hi there!</div>
+  <svg viewBox="0 0 150 185" xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="75" cy="182" rx="34" ry="8" fill="#3b1f7a" opacity="0.4"/>
+    <rect x="38" y="148" width="74" height="24" fill="#6d3fc9"/>
+    <ellipse cx="75" cy="148" rx="37" ry="11" fill="#7c4fe0"/>
+    <ellipse cx="75" cy="172" rx="37" ry="11" fill="#5a32b0"/>
+    <circle cx="75" cy="78" r="66" fill="#8b5cf6"/>
+    <ellipse cx="57" cy="50" rx="20" ry="12" fill="#a78bfa" opacity="0.25" transform="rotate(-25 57 50)"/>
+    <circle cx="57" cy="74" r="9.5" fill="#1a0533"/>
+    <circle cx="93" cy="74" r="9.5" fill="#1a0533"/>
+    <circle cx="60" cy="71" r="3.2" fill="#fff" opacity="0.75"/>
+    <circle cx="96" cy="71" r="3.2" fill="#fff" opacity="0.75"/>
+    <ellipse cx="40" cy="91" rx="13" ry="8.5" fill="#e879f9" opacity="0.6"/>
+    <ellipse cx="110" cy="91" rx="13" ry="8.5" fill="#e879f9" opacity="0.6"/>
+    <path d="M59 101 Q75 118 91 101" stroke="#1a0533" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+  </svg>
+</div>
+
+<script>
+function popNode(el){el.classList.remove('popped');void el.offsetWidth;el.classList.add('popped');setTimeout(()=>el.classList.remove('popped'),400);}
+const msgs=["👋 Hi there!","😊 Nice to meet you!","💜 Hire Manya!","🚀 Check out my projects!","✨ Thanks for visiting!","🧠 DSA Enthusiast!"];
+let open=false,tid=null;
+function clickMascot(){
+  const el=document.getElementById('mascot-fixed');
+  const bub=document.getElementById('bub');
+  bub.textContent=msgs[Math.floor(Math.random()*msgs.length)];
+  el.classList.remove('bounce');
+  void el.offsetWidth;
+  el.classList.add('bounce');
+  setTimeout(()=>el.classList.remove('bounce'),500);
+  if(!open){bub.classList.add('on');open=true;clearTimeout(tid);tid=setTimeout(()=>{bub.classList.remove('on');open=false;},3000);}
+  else{bub.classList.remove('on');open=false;clearTimeout(tid);}
+}
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}
+  });
+});
+</script>
+</body>
+</html>
