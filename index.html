@@ -53,6 +53,33 @@ nav{
 }
 .hire-btn:hover{background:#8b5cf6;color:#fff;transform:translateY(-1px)}
 
+/* hamburger */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.hamburger span{width:24px;height:2px;background:#fff;border-radius:2px;transition:all .3s}
+
+/* mobile menu */
+.mobile-menu{
+  display:none;
+  position:fixed;top:64px;left:0;right:0;z-index:199;
+  background:rgba(10,10,10,0.98);backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(255,255,255,0.07);
+  flex-direction:column;padding:16px 24px 24px;gap:4px;
+}
+.mobile-menu.open{display:flex}
+.mobile-menu a{
+  color:#9ca3af;text-decoration:none;font-size:16px;font-weight:500;
+  padding:12px 0;border-bottom:1px solid #1a1a1a;transition:color .2s;
+}
+.mobile-menu a:last-child{border-bottom:none}
+.mobile-menu a:hover{color:#fff}
+.mobile-hire{
+  margin-top:12px;text-align:center;
+  background:transparent;color:#8b5cf6;border:2px solid #8b5cf6;
+  padding:10px 24px;border-radius:10px;font-size:14px;font-weight:600;
+  text-decoration:none;display:block;transition:background .2s,color .2s;
+}
+.mobile-hire:hover{background:#8b5cf6;color:#fff}
+
 /* ── HERO ── */
 #hero{
   min-height:100vh;display:flex;flex-direction:column;
@@ -258,11 +285,33 @@ footer{border-top:1px solid var(--border);padding:28px 52px;text-align:center;co
   50%{box-shadow:0 0 44px rgba(251,191,36,0.5)}
 }
 
-@media(max-width:700px){
-  .cc-node{width:80px;height:64px;font-size:9px}
-  .cc-node i,.cc-node svg{font-size:22px;width:22px;height:22px}
-  .cc-turn-right{margin-right:42px}
-  .cc-turn-left{margin-left:42px}
+@media(max-width:768px){
+  nav{padding:0 20px}
+  .nav-links{display:none !important}
+  .hire-btn{display:none}
+  .hamburger{display:flex}
+  .section{padding:60px 20px}
+  .contact-grid{grid-template-columns:1fr}
+  footer{padding:22px 20px}
+  .hero-name{font-size:clamp(42px,12vw,72px);letter-spacing:-2px}
+  .chips{gap:10px}
+  .chip{min-width:80px;padding:14px 16px}
+  .proj-card{padding:24px}
+}
+@media(max-width:480px){
+  .hero-name{font-size:clamp(36px,13vw,56px);letter-spacing:-1px}
+  .hero-dots{font-size:14px;letter-spacing:3px}
+  .hero-btns{flex-direction:column;align-items:center}
+  .btn-fill,.btn-outline{width:200px;justify-content:center}
+  .big-title{font-size:20px;letter-spacing:2px}
+  .chip{min-width:72px;padding:12px 14px}
+  .chip svg{width:22px;height:22px}
+  .chip-label{font-size:11px}
+  .section{padding:48px 16px}
+  .proj-card{padding:20px}
+  .proj-title{font-size:18px}
+  .feat-list li{font-size:13px}
+  .sub-text{font-size:14px}
 }
 
 </style>
@@ -275,12 +324,26 @@ footer{border-top:1px solid var(--border);padding:28px 52px;text-align:center;co
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
     <li><a href="#projects">Projects</a></li>
-    <li><a href="#contact">Contact</a></li>
     <li><a href="YOUR_RESUME_LINK_HERE" target="_blank" style="color:var(--purple);font-weight:600">Resume ↓</a></li>
   </ul>
   <a href="#contact" class="hire-btn">Hire Me</a>
+  <!-- Hamburger -->
+  <div class="hamburger" onclick="toggleMenu()" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
 </nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" onclick="closeMenu()">About</a>
+  <a href="#skills" onclick="closeMenu()">Skills</a>
+  <a href="#experience" onclick="closeMenu()">Experience</a>
+  <a href="#projects" onclick="closeMenu()">Projects</a>
+  <a href="YOUR_RESUME_LINK_HERE" target="_blank" style="color:var(--purple);font-weight:600">Resume ↓</a>
+  <a href="#contact" class="mobile-hire" onclick="closeMenu()">Hire Me</a>
+</div>
 
 <!-- ── HERO ── -->
 <div id="hero">
@@ -331,33 +394,16 @@ footer{border-top:1px solid var(--border);padding:28px 52px;text-align:center;co
 <!-- ── ABOUT ── -->
 <section class="section" id="about">
   <h2 class="big-title" style="text-align:center">About Me</h2>
-  <p class="sub-title-muted" style="text-align:center;font-size:26px;font-weight:700;color:#ffffff;margin-bottom:22px;letter-spacing:-0.5px">Driven by Curiosity</p>
-  <p class="sub-text" style="margin:0 auto 56px;text-align:center">
-    I'm an Information Science student with a deep passion for understanding how things work under the hood. My journey revolves around mastering core CS fundamentals and continuously improving my problem-solving abilities.
+  <p class="sub-title-muted" style="text-align:center;font-size:26px;font-weight:700;color:#ffffff;margin-bottom:32px;letter-spacing:-0.5px">Driven by Curiosity</p>
+  <p class="sub-text" style="margin:0 auto 24px;text-align:center;font-size:16px;line-height:1.9">
+    I'm an Information Science & Engineering student passionate about Generative AI, software development, and building technology that solves real-world problems. I enjoy exploring AI applications, participating in hackathons, contributing to open source, and continuously strengthening my problem-solving skills through Data Structures & Algorithms.
   </p>
-  <div class="three-grid">
-    <div class="about-card">
-      <div class="icon-box">
-        <svg viewBox="0 0 24 24"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 1 1 7.072 0l-.548.547A3.374 3.374 0 0 0 14 18.469V19a2 2 0 1 1-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
-      </div>
-      <p class="card-title">Problem Solver</p>
-      <p class="card-body">Passionate about breaking down complex problems into elegant, efficient solutions</p>
-    </div>
-    <div class="about-card">
-      <div class="icon-box">
-        <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-      </div>
-      <p class="card-title">DSA Enthusiast</p>
-      <p class="card-body">Regular practice on HackerRank and Codeforces to sharpen algorithmic thinking</p>
-    </div>
-    <div class="about-card">
-      <div class="icon-box">
-        <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-      </div>
-      <p class="card-title">Optimization Focus</p>
-      <p class="card-body">Committed to writing clean, optimized code with optimal time and space complexity</p>
-    </div>
-  </div>
+  <p class="sub-text" style="margin:0 auto 32px;text-align:center;font-size:16px;line-height:1.9">
+    Beyond coding, I enjoy taking on leadership roles, organizing technical initiatives, and contributing to student communities. I'm always eager to learn, collaborate, and connect with people who are passionate about technology and innovation.
+  </p>
+  <p class="sub-text" style="margin:0 auto;text-align:center;font-size:15px;color:#8b5cf6;font-weight:600">
+    Interests: Generative AI • Software Development • Open Source • Hackathons • Community Building
+  </p>
 </section>
 
 <!-- ── SKILLS ── -->
@@ -371,7 +417,7 @@ footer{border-top:1px solid var(--border);padding:28px 52px;text-align:center;co
     <div class="chips">
       <div class="chip">
         <svg viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 17v-5l4 3 4-3v5"/><path d="M8 7h8"/></svg>
-        <span class="chip-label">Python</span>
+        <span class="chip-label">Python (Basics)</span>
       </div>
       <div class="chip">
         <svg viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="1.7"><path d="M4 17V7l8-4 8 4v10l-8 4-8-4z"/><path d="M12 3v18"/><path d="M4 7l8 4 8-4"/></svg>
@@ -379,7 +425,7 @@ footer{border-top:1px solid var(--border);padding:28px 52px;text-align:center;co
       </div>
       <div class="chip">
         <svg viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 8h8M8 12h5M8 16h3"/></svg>
-        <span class="chip-label">Java</span>
+        <span class="chip-label">Java (Basics)</span>
       </div>
     </div>
   </div>
@@ -414,36 +460,112 @@ footer{border-top:1px solid var(--border);padding:28px 52px;text-align:center;co
         <span class="chip-label">OS</span>
       </div>
       <div class="chip">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="1.7"><circle cx="12" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/><path d="M12 7v4M12 11l-5 6M12 11l5 6M7 17h10"/></svg>
-        <span class="chip-label">ML</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="1.3"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/></svg>
+        <span class="chip-label">DBMS</span>
       </div>
     </div>
   </div>
 
   <div class="skill-section">
-    <p class="skill-section-title">Tools &amp; Cloud</p>
+    <p class="skill-section-title">AI & Developer Tools</p>
     <div class="chips">
       <div class="chip">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="1.7"><circle cx="12" cy="12" r="4"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="1.3"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 8v4l3 3"/><circle cx="19" cy="5" r="3"/></svg>
+        <span class="chip-label">Prompt Engineering</span>
+      </div>
+      <div class="chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="1.3"><circle cx="12" cy="12" r="4"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
         <span class="chip-label">Git</span>
       </div>
       <div class="chip">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="1.7"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0 1 12 6.8c.85.004 1.7.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10.01 10.01 0 0 0 22 12c0-5.52-4.48-10-10-10z"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="1.3"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0 1 12 6.8c.85.004 1.7.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10.01 10.01 0 0 0 22 12c0-5.52-4.48-10-10-10z"/></svg>
         <span class="chip-label">GitHub</span>
       </div>
       <div class="chip">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="1.3"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>
         <span class="chip-label">VS Code</span>
       </div>
       <div class="chip">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="1.7"><path d="M12 2L2 19h20L12 2z"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="1.3"><path d="M12 2L2 19h20L12 2z"/></svg>
         <span class="chip-label">Vercel</span>
       </div>
-      <div class="chip">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="1.7"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
-        <span class="chip-label">Azure AI</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── EXPERIENCE ── -->
+<section class="section" id="experience">
+  <h2 class="big-title" style="text-align:center">Experience</h2>
+  <p class="sub-title-muted" style="text-align:center;font-size:26px;font-weight:700;color:#ffffff;margin-bottom:40px;letter-spacing:-0.5px">My Journey</p>
+
+  <div style="position:relative;padding-left:28px;border-left:2px solid #2a2a2a;display:flex;flex-direction:column;gap:36px">
+
+    <!-- Experience 1 -->
+    <div style="position:relative">
+      <div style="position:absolute;left:-37px;top:4px;width:14px;height:14px;border-radius:50%;background:#8b5cf6;border:2px solid #0a0a0a"></div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;transition:border-color .25s" onmouseover="this.style.borderColor='#8b5cf6'" onmouseout="this.style.borderColor='#252525'">
+        <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px">
+          <h3 style="font-size:17px;font-weight:700;color:#fff">Campus Ambassador</h3>
+          <span style="font-size:12px;font-weight:600;color:#8b5cf6;background:rgba(139,92,246,0.12);padding:4px 12px;border-radius:20px;white-space:nowrap">Jun 2026 – Present</span>
+        </div>
+        <p style="font-size:14px;color:#8b5cf6;font-weight:600;margin-bottom:4px">E-Cell, IIT Bombay</p>
+        <p style="font-size:13px;color:var(--muted)">Remote · 3 mos</p>
       </div>
     </div>
+
+    <!-- Experience 2 -->
+    <div style="position:relative">
+      <div style="position:absolute;left:-37px;top:4px;width:14px;height:14px;border-radius:50%;background:#8b5cf6;border:2px solid #0a0a0a"></div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;transition:border-color .25s" onmouseover="this.style.borderColor='#8b5cf6'" onmouseout="this.style.borderColor='#252525'">
+        <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px">
+          <h3 style="font-size:17px;font-weight:700;color:#fff">GSSoC – 2026 Contributor</h3>
+          <span style="font-size:12px;font-weight:600;color:#8b5cf6;background:rgba(139,92,246,0.12);padding:4px 12px;border-radius:20px;white-space:nowrap">May 2026 – Present</span>
+        </div>
+        <p style="font-size:14px;color:#8b5cf6;font-weight:600;margin-bottom:4px">GirlScript Summer of Code</p>
+        <p style="font-size:13px;color:var(--muted)">Remote · 4 mos</p>
+      </div>
+    </div>
+
+    <!-- Experience 3 — GCEM grouped -->
+    <div style="position:relative">
+      <div style="position:absolute;left:-37px;top:4px;width:14px;height:14px;border-radius:50%;background:#8b5cf6;border:2px solid #0a0a0a"></div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;transition:border-color .25s" onmouseover="this.style.borderColor='#8b5cf6'" onmouseout="this.style.borderColor='#252525'">
+        <!-- Company header -->
+        <p style="font-size:17px;font-weight:700;color:#ffffff;margin-bottom:4px">Gopalan College of Engineering and Management (GCEM), Bengaluru</p>
+        <p style="font-size:13px;color:var(--muted);margin-bottom:24px">10 mos</p>
+
+        <!-- Role 1 with inner timeline -->
+        <div style="display:flex;gap:16px;margin-bottom:24px">
+          <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0">
+            <div style="width:10px;height:10px;border-radius:50%;background:#8b5cf6;margin-top:4px"></div>
+            <div style="width:2px;flex:1;background:#333;margin-top:6px"></div>
+          </div>
+          <div>
+            <h3 style="font-size:15px;font-weight:700;color:#fff;margin-bottom:3px">Technical Head – ARISE Club</h3>
+            <p style="font-size:13px;color:var(--muted)">Nov 2025 – Present · 10 mos</p>
+          </div>
+        </div>
+
+        <!-- Role 2 with inner timeline -->
+        <div style="display:flex;gap:16px">
+          <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0">
+            <div style="width:10px;height:10px;border-radius:50%;background:#8b5cf6;margin-top:4px"></div>
+          </div>
+          <div>
+            <h3 style="font-size:15px;font-weight:700;color:#fff;margin-bottom:3px">Event Coordinator – Estralis (Annual College Fest)</h3>
+            <p style="font-size:13px;color:var(--muted);margin-bottom:12px">Apr 2026 – May 2026 · 2 mos</p>
+            <ul style="list-style:none;display:flex;flex-direction:column;gap:8px">
+              <li style="display:flex;align-items:flex-start;gap:8px;font-size:13.5px;color:#e5e7eb"><span style="color:#8b5cf6;flex-shrink:0;margin-top:2px">✦</span>Coordinated a team of volunteers during the annual college fest</li>
+              <li style="display:flex;align-items:flex-start;gap:8px;font-size:13.5px;color:#e5e7eb"><span style="color:#8b5cf6;flex-shrink:0;margin-top:2px">✦</span>Assigned tasks and ensured smooth event execution</li>
+              <li style="display:flex;align-items:flex-start;gap:8px;font-size:13.5px;color:#e5e7eb"><span style="color:#8b5cf6;flex-shrink:0;margin-top:2px">✦</span>Worked with the organizing team to manage event activities</li>
+              <li style="display:flex;align-items:flex-start;gap:8px;font-size:13.5px;color:#e5e7eb"><span style="color:#8b5cf6;flex-shrink:0;margin-top:2px">✦</span>Built leadership, teamwork, and communication skills</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -456,11 +578,19 @@ footer{border-top:1px solid var(--border);padding:28px 52px;text-align:center;co
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
       Smart India Hackathon – 2025
     </div>
+    <div style="display:flex;align-items:center;gap:6px;color:var(--muted);font-size:13px;margin-bottom:12px">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+      Sep 2025 – Oct 2025
+    </div>
     <h3 class="proj-title">Gamified Learning Platform for Rural Education</h3>
     <div class="proj-role">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
       Role: <strong style="color:#fff;margin-left:4px">Team Leader – Smart India Hackathon 2025</strong>
     </div>
+    <a href="https://eduodia.lovable.app/" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:transparent;border:1.5px solid #8b5cf6;color:#8b5cf6;padding:9px 20px;border-radius:50px;font-size:13.5px;font-weight:600;text-decoration:none;margin-bottom:20px;transition:background .2s,color .2s">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      View Prototype
+    </a>
     <p class="proj-desc">
       Developed a gamified multilingual learning platform aimed at improving education accessibility for rural students. The platform supports Odia voice-based learning, AI assistance, and localized content to enable inclusive and engaging education.
     </p>
@@ -473,9 +603,35 @@ footer{border-top:1px solid var(--border);padding:28px 52px;text-align:center;co
       <li><span class="feat-star">✦</span>Assignments, overdue tracking, virtual labs, and mini-games</li>
     </ul>
   </div>
-</section>
-
-<!-- ── CONTACT ── -->
+  <div class="proj-card">
+    <div class="proj-badge">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+      The Stupid Hackathon 2026 – Acharya Institute of Technology
+    </div>
+    <div style="display:flex;align-items:center;gap:6px;color:var(--muted);font-size:13px;margin-bottom:12px">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+      Mar 2026 – Mar 2026
+    </div>
+    <h3 class="proj-title">Log Kya Kahenge?</h3>
+    <div class="proj-role">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+      Role: <strong style="color:#fff;margin-left:4px">Team Member</strong>
+    </div>
+    <a href="https://log-kya-kahenge-jet.vercel.app/" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:transparent;border:1.5px solid #8b5cf6;color:#8b5cf6;padding:9px 20px;border-radius:50px;font-size:13.5px;font-weight:600;text-decoration:none;margin-bottom:20px;transition:background .2s,color .2s">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      View Project
+    </a>
+    <p class="proj-desc">
+      Developed Log Kya Kahenge?, a gossip-based social platform prototype during The Stupid Hackathon 2026. Inspired by the idea that in Indian society, fewer rumors about you translate to higher "Izzat Points," introducing a unique reputation-based concept.
+    </p>
+    <ul class="feat-list">
+      <li><span class="feat-star">✦</span>Anonymous posting and topic-based gossip system</li>
+      <li><span class="feat-star">✦</span>Gossip Panchayat, Uncle & Aunty Panel for community moderation</li>
+      <li><span class="feat-star">✦</span>Image and location-based proof submission</li>
+      <li><span class="feat-star">✦</span>Leaderboards, streaks and Izzat Points reputation system</li>
+      <li><span class="feat-star">✦</span>Deployed on Vercel for live online access</li>
+    </ul>
+  </div> -->
 <section class="section" id="contact">
   <span class="label label-orange" style="text-align:center">Get In Touch</span>
   <h2 class="big-title" style="text-align:center">Let's Connect</h2>
@@ -539,6 +695,14 @@ footer{border-top:1px solid var(--border);padding:28px 52px;text-align:center;co
 function popNode(el){el.classList.remove('popped');void el.offsetWidth;el.classList.add('popped');setTimeout(()=>el.classList.remove('popped'),400);}
 const msgs=["👋 Hi there!","😊 Nice to meet you!","💜 Hire Manya!","🚀 Check out my projects!","✨ Thanks for visiting!","🧠 DSA Enthusiast!"];
 let open=false,tid=null;
+
+function toggleMenu(){
+  const menu=document.getElementById('mobileMenu');
+  menu.classList.toggle('open');
+}
+function closeMenu(){
+  document.getElementById('mobileMenu').classList.remove('open');
+}
 function clickMascot(){
   const el=document.getElementById('mascot-fixed');
   const bub=document.getElementById('bub');
